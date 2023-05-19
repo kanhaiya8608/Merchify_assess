@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { QuestionsData } from '../data/data.js';
 import Question from './Question';
 import Buttons from './Buttons';
+import { BsJournalText, BsStopwatch } from 'react-icons/bs';
 
 function QuizPage() {
     const TIME_ONE = 30;
@@ -16,16 +17,13 @@ function QuizPage() {
         setSubmittedData({ ...submittedData, [index]: value });
     };
 
-
     const timerId = setTimeout(() => {
         if (totalTime === 0) {
             calculateScore();
-        }
-        else {
+        } else {
             setTotalTime(totalTime - 1);
         }
     }, 1000);
-
 
     const calculateScore = () => {
         clearTimeout(timerId);
@@ -34,22 +32,28 @@ function QuizPage() {
             if (question.answer === submittedData[index]) {
                 score += 1;
             }
-        })
+        });
         navigate("/score", { state: { score: score, submittedData: submittedData } });
     };
 
-
-
     return (
-        <div className="">
-            <div className="">
-                <span>Timer: {totalTime} sec</span>
+        <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-b from-blue-500 via-blue-300 to-orange-200">
+            <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg">
+                <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center">
+                        <BsJournalText className="text-2xl text-blue-500 mr-2" />
+                        <span className="text-lg font-bold">
+                            {currentQuestionIndex + 1}/{QuestionsData.length}
+                        </span>
+                    </div>
+                    <div className="flex items-center"><BsStopwatch className="text-2xl text-blue-500" />
+                        <span className="text-lg font-bold">{totalTime} sec</span></div>
+                </div>
                 <Question
                     currentQuestionIndex={currentQuestionIndex}
                     currentQuestion={QuestionsData[currentQuestionIndex]}
                     updateSubmission={updateSubmission}
                     selectedOption={submittedData[currentQuestionIndex]}
-
                 />
                 <Buttons
                     setCurrentQuestionIndex={setCurrentQuestionIndex}
@@ -58,7 +62,6 @@ function QuizPage() {
                     calculateScore={calculateScore}
                 />
             </div>
-            <div className=""></div>
         </div>
     );
 }
