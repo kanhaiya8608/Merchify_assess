@@ -49,11 +49,13 @@ function QuizPage() {
                     currentQuestion={QuestionsData[currentQuestionIndex]}
                     updateSubmission={updateSubmission}
                     selectedOption={submittedData[currentQuestionIndex]}
+
                 />
                 <Buttons
                     setCurrentQuestionIndex={setCurrentQuestionIndex}
                     currentQuestionIndex={currentQuestionIndex}
                     submittedData={submittedData}
+                    calculateScore={calculateScore}
                 />
             </div>
             <div className=""></div>

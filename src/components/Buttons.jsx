@@ -1,5 +1,5 @@
 import { QuestionsData } from "../data/data";
-const Buttons = ({ setCurrentQuestionIndex, currentQuestionIndex, submittedData }) => {
+const Buttons = ({ setCurrentQuestionIndex, currentQuestionIndex, submittedData, calculateScore }) => {
     return (
         <div className="textcenter">
             <button
@@ -15,7 +15,7 @@ const Buttons = ({ setCurrentQuestionIndex, currentQuestionIndex, submittedData 
                     if (currentQuestionIndex < QuestionsData.length - 1) {
                         setCurrentQuestionIndex(currentQuestionIndex + 1);
                     } else {
-                        calculateScore();
+                        calculateScore(); // Use the prop here
                     }
                 }}
                 disabled={!submittedData[currentQuestionIndex]}
