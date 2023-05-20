@@ -6,7 +6,7 @@ import Buttons from './Buttons';
 import { BsJournalText, BsStopwatch } from 'react-icons/bs';
 
 function QuizPage() {
-    const TIME_ONE = 30;
+    const TIME_ONE = 10;
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [submittedData, setSubmittedData] = useState({});
     const navigate = useNavigate();
